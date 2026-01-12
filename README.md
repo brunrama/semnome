@@ -11,14 +11,15 @@ O foco está em **nomes de pessoas**, **datas de nascimento** e **CPFs**.
 - 🎂 **Anonimização de Data de Nascimento**
 - 👤 **Anonimização de Nomes**
 - 🔠 **Codificação / Decodificação de Maiúsculas**
-- 🧠 **Camada Extra (opcional) com SpaCy**
+- 🧠 **Camada Extra com SpaCy**
 
 ---
 **Detalhamento do funcionamento:**
 
-A classe encapsula 5 funções específicas e pensadas para uso sequencial, de forma a gerar um tratamento consistente na anonimização de nomes próprios.
-Diversas ferramentas de anonimização são baseadas em REGEX e acabam resultando em anonimizações "falso positivas", ou seja, quando o código acaba anonimizando uma expressão que parece nome próprio, mas não o é. No exemplo "então ele disse à Central de Atendimento que gostaria de (...)", pode haver anonimização indevida de "Central de Atendimento".
+A classe encapsula 5 funções específicas e pensadas para uso sequencial, de forma a gerar um tratamento consistente e incremental na anonimização de nomes próprios.
+Diversas ferramentas de anonimização são baseadas em REGEX e acabam resultando em anonimizações "falso positivas", ou seja, quando o código acaba anonimizando uma expressão que parece nome próprio, mas não o é. No exemplo "(...) então ele disse à Central de Atendimento que gostaria de (...)", pode haver anonimização indevida de "Central de Atendimento".
 Mesmo utilizando modelos de processamento natural de linguagem (NLP), a exemplo do SpaCY, algumas ocorrências podem ser falseamente anonimizadas, o que acaba gerando diferentes perdas de conteúdo da string como um todo. 
+
 Para eliminar tais efeitos, a classe "SemNome" estabelece 5 camadas a serem aplicadas de forma progressiva e incremental, a saber:
 
 *ENTRADA DA STRING PARA TRATAMENTO*
@@ -45,15 +46,17 @@ Aqui, todas as palavras em minusculas que foram revertidas na segunda camada sã
 ---
 
 📦 Instalação
+
 Clone o repositório:
 git clone https://github.com/seu-usuario/semnome.git
 cd semnome
 (Ou copie o arquivo semnome.py para o seu projeto.)
-Dependências opcionais (para SpaCy):
+
+Dependências necessárias para SpaCy:
 pip install spacy
 python -m spacy download pt_core_news_sm
 ________________________________________
-🚀 Exemplo de Uso
+🚀 **Exemplo de Uso**
 
 if __name__ == "__main__":
     engine = SemNome()
@@ -93,6 +96,16 @@ if __name__ == "__main__":
     t5 = engine.decodar_maiusculas(t4, lista1, lista2)
     print("\n=== Texto final ===")
     print(t5)
+
+----------------------------------
+** Saída Esperada após tratamento **
+
+O consumidor C. S. de A., nascido em xx/xx/xxxx, residente no Rio de Janeiro,
+apresentou seu CPF xxx.xxx.xxx-xx. A cliente J. V. S. também compareceu.
+Outro registro: CPF xxxxxxxxx-xx informado manualmente.
+ 
+
+
 ________________________________________
 📜 Licença
 Distribuído sob a licença MIT.
