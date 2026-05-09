@@ -1,5 +1,8 @@
 # semnome
-Classe Python desenvolvida para anonimizar informações sensíveis específicas (nome de pessoas, CPF e datas de nascimento) em textos técnicos ou administrativos, com o objetivo de criar uma camada extra de anonimização em workflows que envolvam a manipulação de strings.   
+Classe Python desenvolvida para anonimizar informações sensíveis específicas (nome de pessoas, CPF e datas de nascimento) em textos técnicos ou administrativos, com o objetivo de criar uma camada extra de anonimização em workflows que envolvam a manipulação de strings.
+
+<img width="818" height="357" alt="image" src="https://github.com/user-attachments/assets/f816f2e5-c967-4f21-bad5-ce4e5168657d" />
+
 
 O foco está em **nomes de pessoas**, **datas de nascimento** e **CPFs**.
 
